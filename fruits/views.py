@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework import generics
+from .serializer import FruitSerializer
+from .models import Fruit
 
-# Create your views here.
+class FruitList(generics.ListCreateAPIView):
+    queryset = Fruit.objects.all()
+    serializer_class = FruitSerializer
+
+class FruitDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Fruit.objects.all()
+    serializer_class = FruitSerializer
